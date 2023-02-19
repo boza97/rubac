@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { resolve } from 'path';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { configValidationSchema } from './config.schema';
@@ -9,7 +10,7 @@ import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`environment/.env.stage.${process.env.STAGE}`],
+      envFilePath: [resolve(__dirname, `./environment/.env.stage.${process.env.STAGE}`)],
       validationSchema: configValidationSchema,
     }),
     TypeOrmModule.forRootAsync({
