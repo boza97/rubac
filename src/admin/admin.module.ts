@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from 'src/auth/auth.module';
-import { RulesModule } from 'src/rules/rules.module';
+import { AuthModule } from '../auth/auth.module';
+import { RulesModule } from '../rules/rules.module';
 import { AdminController } from './admin.controller';
 
 @Module({
