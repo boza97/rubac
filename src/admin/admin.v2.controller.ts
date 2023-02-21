@@ -4,12 +4,12 @@ import { RuleEnum } from '../rules/enum/rule.enum';
 import { Rule } from '../rules/rule.decorator';
 import { RulesGuard } from '../rules/rules.guard';
 
-@Controller('admin')
-@Rule(RuleEnum.Workflow1)
+@Controller({ path: 'admin', version: '2' })
+@Rule(RuleEnum.Workflow2)
 @UseGuards(AuthGuard(), RulesGuard)
-export class AdminController {
+export class AdminControllerV2 {
   @Get('/users')
   users() {
-    return 'Admin Users';
+    return 'Admin Users V2';
   }
 }

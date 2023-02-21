@@ -1,14 +1,14 @@
 import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
 import { RulesService } from '../rules/rules.service';
-import { AdminController } from './admin.controller';
+import { AdminControllerV2 } from './admin.v2.controller';
 
-describe('AdminController', () => {
-  let controller: AdminController;
+describe('AdminControllerV2', () => {
+  let controller: AdminControllerV2;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [AdminController],
+      controllers: [AdminControllerV2],
       imports: [
         PassportModule.register({
           defaultStrategy: 'jwt',
@@ -17,7 +17,7 @@ describe('AdminController', () => {
       providers: [RulesService],
     }).compile();
 
-    controller = module.get<AdminController>(AdminController);
+    controller = module.get<AdminControllerV2>(AdminControllerV2);
   });
 
   it('should be defined', () => {
