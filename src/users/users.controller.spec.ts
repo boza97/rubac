@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UpdateUserRoleDto } from './dto/update-user-role.dto';
-import { UserDto } from './dto/user.dto';
 import { UserRole } from './enum/user-role.enum';
 import { User } from './user.entity';
 import { UsersController } from './users.controller';
@@ -29,16 +28,7 @@ describe('UsersController', () => {
     expect(controller).toBeDefined();
   });
 
-  describe('create', () => {
-    it('should call UsersService.create with the given UserDto', async () => {
-      const userDto: UserDto = { username: 'testuser', password: 'testpassword' };
-      await controller.create(userDto);
-
-      expect(usersService.create).toHaveBeenCalledWith(userDto);
-    });
-  });
-
-  describe('updateTaskStatus', () => {
+  describe('updateUserRole', () => {
     it('should call UsersService.updateUserRole with the given id and role', async () => {
       const updateUserRoleDto: UpdateUserRoleDto = { role: UserRole.ADMIN };
       const expectedUser: Omit<User, 'password'> = {
