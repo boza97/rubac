@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 import { Observable } from 'rxjs';
-import { User } from '../users/user.entity';
+import { UserResponseDto } from '../users/dto/user-response.dto';
 import { RuleEnum } from './enum/rule.enum';
 import { RulesService } from './rules.service';
 
@@ -17,6 +17,6 @@ export class RulesGuard implements CanActivate {
       this.reflector.get<RuleEnum>('rule', context.getHandler());
     if (!ruleId) return true;
 
-    return this.rulesService.evaluate(ruleId, req, req.user as Omit<User, 'password'>);
+    return this.rulesService.evaluate(ruleId, req, req.user as UserResponseDto);
   }
 }

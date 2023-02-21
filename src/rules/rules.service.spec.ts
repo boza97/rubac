@@ -1,8 +1,8 @@
 import { InternalServerErrorException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Request } from 'express';
+import { UserResponseDto } from '../users/dto/user-response.dto';
 import { UserRole } from '../users/enum/user-role.enum';
-import { User } from '../users/user.entity';
 import { RuleEnum } from './enum/rule.enum';
 import { RulesModule } from './rules.module';
 import { RulesService } from './rules.service';
@@ -24,7 +24,7 @@ describe('RulesService', () => {
 
   describe('evaluate', () => {
     let request: Request;
-    let user: Omit<User, 'password'>;
+    let user: UserResponseDto;
     const workflows = [1, 2];
 
     beforeEach(() => {
@@ -36,7 +36,7 @@ describe('RulesService', () => {
         id: '1',
         username: 'admin',
         role: 'ADMIN',
-      } as Omit<User, 'password'>;
+      } as UserResponseDto;
     });
 
     it('should evaluate to true when all rules are satisfied', () => {

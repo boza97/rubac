@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UpdateUserRoleDto } from './dto/update-user-role.dto';
+import { UserResponseDto } from './dto/user-response.dto';
 import { UserRole } from './enum/user-role.enum';
-import { User } from './user.entity';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
@@ -31,7 +31,7 @@ describe('UsersController', () => {
   describe('updateUserRole', () => {
     it('should call UsersService.updateUserRole with the given id and role', async () => {
       const updateUserRoleDto: UpdateUserRoleDto = { role: UserRole.ADMIN };
-      const expectedUser: Omit<User, 'password'> = {
+      const expectedUser: UserResponseDto = {
         id: '1',
         username: 'test',
         role: UserRole.ADMIN,

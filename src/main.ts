@@ -8,8 +8,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   app.enableVersioning({
-    type: VersioningType.MEDIA_TYPE,
-    key: 'v=',
+    type: VersioningType.URI,
     defaultVersion: VERSION_NEUTRAL,
   });
 
@@ -18,6 +17,7 @@ async function bootstrap() {
     .setDescription('RuBAC Service')
     .setVersion('1.0')
     .addTag('rubac')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

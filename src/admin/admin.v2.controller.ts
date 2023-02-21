@@ -1,11 +1,17 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiHeader, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiForbiddenResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { RulesGuard } from '../rules/rules.guard';
 
+@ApiTags('rubac')
 @ApiBearerAuth()
-@ApiTags('AdminControllerV2')
-@ApiHeader({ name: 'Accept', required: true, example: 'application/json;v=2' })
+@ApiUnauthorizedResponse({ description: 'Unauthorized' })
+@ApiForbiddenResponse({ description: 'Access Forbidden' })
 @Controller({ path: 'admin', version: '2' })
 @UseGuards(AuthGuard(), RulesGuard)
 export class AdminControllerV2 {

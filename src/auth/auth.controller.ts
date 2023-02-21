@@ -1,8 +1,15 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiConflictResponse, ApiCreatedResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import {
+  ApiConflictResponse,
+  ApiCreatedResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
+import { AuthResponseDto } from './dto/auth-response.dto';
 
+@ApiTags('rubac')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -16,10 +23,11 @@ export class AuthController {
 
   @ApiCreatedResponse({
     description: 'You have successfully signin',
+    type: AuthResponseDto,
   })
   @ApiUnauthorizedResponse({ description: 'Please check your auth credentials' })
   @Post('/signin')
-  signIn(@Body() authCredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string }> {
+  signIn(@Body() authCredentialsDto: AuthCredentialsDto): Promise<AuthResponseDto> {
     return this.authService.signin(authCredentialsDto);
   }
 }

@@ -5,7 +5,7 @@ import * as ip from 'ip';
 import * as net from 'net';
 import * as path from 'path';
 import { Script } from 'vm';
-import { User } from '../users/user.entity';
+import { UserResponseDto } from '../users/dto/user-response.dto';
 import { RuleEnum } from './enum/rule.enum';
 import { Workflow } from './workflow';
 
@@ -18,7 +18,7 @@ export class RulesService {
     this.workflows = JSON.parse(data);
   }
 
-  evaluate(workflowId: RuleEnum, request: Request, user: Omit<User, 'password'>): boolean {
+  evaluate(workflowId: RuleEnum, request: Request, user: UserResponseDto): boolean {
     const workflow = this.workflows.find((w) => w.WorkflowID === workflowId);
     if (!workflow) {
       throw new InternalServerErrorException(`Workflow with ID ${workflowId} not found`);
