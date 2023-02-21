@@ -14,6 +14,6 @@ export class RulesGuard implements CanActivate {
       this.reflector.get<RuleEnum>('rule', context.getClass()) ||
       this.reflector.get<RuleEnum>('rule', context.getHandler());
     if (!ruleId) return true;
-    return this.rulesService.evaluate(ruleId, req);
+    return this.rulesService.evaluate(ruleId, req, req.user);
   }
 }

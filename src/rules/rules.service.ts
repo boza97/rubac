@@ -18,7 +18,7 @@ export class RulesService {
     this.workflows = JSON.parse(data);
   }
 
-  evaluate(workflowId: RuleEnum, request: Request): boolean {
+  evaluate(workflowId: RuleEnum, request: Request, user: Omit<User, 'password'>): boolean {
     const workflow = this.workflows.find((w) => w.WorkflowID === workflowId);
     if (!workflow) {
       throw new InternalServerErrorException(`Workflow with ID ${workflowId} not found`);
@@ -28,7 +28,6 @@ export class RulesService {
       return true;
     }
 
-    const user = request.user as Omit<User, 'password'>;
     const context: any = {
       $request: {
         getIpAddress: this.convertIp(request.ip),

@@ -14,7 +14,7 @@ export class UsersController {
   }
 
   @Patch('/:id/role')
-  updateTaskStatus(
+  updateUserRole(
     @Param('id') id: string,
     @Body() updateUserRoleDto: UpdateUserRoleDto
   ): Promise<Omit<User, 'password'>> {
