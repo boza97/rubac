@@ -56,6 +56,12 @@ $ npm install
 docker-compose up -d db
 ```
 
+When you want to stop application stop also the db with next command
+
+```bash
+docker-compose stop db && docker-compose rm -f db
+```
+
 ### Running the app
 
 ```bash
@@ -66,6 +72,10 @@ $ npm run start
 $ npm run start:dev
 
 ```
+
+## SWagger Documentation
+
+When application is up and runing you can visit [doc page](http://localhost:3000/api)
 
 ## Test
 
