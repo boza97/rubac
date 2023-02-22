@@ -24,15 +24,39 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+RuBAC (Rule Based Access Control) service
 
-## Installation
+## Prerequisites
+
+You should have installed node, docker, docker-compose on your machine before runing next commands.
+
+## Runing with docker-compose
+
+Position in the root folder of the project and run next command:
+
+```bash
+docker-compose up -d
+```
+
+The application should be started on: localhost:3000
+
+## Runing locally
+
+You should follow the next steps.
+
+### Installation
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+### Run database with docker
+
+```bash
+docker-compose up -d db
+```
+
+### Running the app
 
 ```bash
 # development
@@ -41,8 +65,6 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
 ```
 
 ## Test
@@ -54,6 +76,4 @@ $ npm run test
 # e2e tests
 $ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
 ```
