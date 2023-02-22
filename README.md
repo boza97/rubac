@@ -40,6 +40,12 @@ docker-compose up -d
 
 The application should be started on: localhost:3000
 
+To stop application just run:
+
+```bash
+docker-compose down -v
+```
+
 ## Runing locally
 
 You should follow the next steps.
@@ -73,7 +79,7 @@ $ npm run start:dev
 
 ```
 
-## SWagger Documentation
+## Swagger Documentation
 
 When application is up and runing you can visit [doc page](http://localhost:3000/api)
 
